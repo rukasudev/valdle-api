@@ -27,3 +27,16 @@ class AuthDto:
             ),
         },
     )
+
+
+class BundleDto:
+    api = Namespace("bundle", description="operações relacionadas a bundles")
+    bundle = api.model(
+        "random_bundle",
+        {
+            "bundle_name": fields.String(required=True, description="Name of bundle"),
+            "bundle_image": fields.String(
+                required=True, description="Promo image of bundle"
+            ),
+        },
+    )
