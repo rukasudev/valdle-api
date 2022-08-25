@@ -1,0 +1,29 @@
+""" Data Transfer Objects (DTOs) to Swagger Documentation. """
+
+from flask_restx import Namespace, fields
+
+
+class UserDto:
+    api = Namespace("users", description="operações relacionadas a usuário")
+    user = api.model(
+        "users",
+        {
+            "email": fields.String(required=True, description="Email do usuário"),
+            "name": fields.String(required=True, description="Nome do usuário"),
+            "password": fields.String(required=True, description="Senha do usuário"),
+            "public_id": fields.String(description="ID público do usuário"),
+        },
+    )
+
+
+class AuthDto:
+    api = Namespace("auth", description="operações relacionadas a autenticação")
+    user_auth = api.model(
+        "autenticação",
+        {
+            "email": fields.String(required=True, description="O endereço de email"),
+            "password": fields.String(
+                required=True, description="Senha de autenticação"
+            ),
+        },
+    )
