@@ -29,10 +29,6 @@ def test():
     return 1
 
 
-# local
-# if __name__ == "__main__":
-#     manager.run()
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
