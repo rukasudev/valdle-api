@@ -9,7 +9,7 @@ api = BundleDto.api
 _bundle = BundleDto.bundle
 
 
-@api.route("/")
+@api.route("/random")
 class UserList(Resource):
     @api.doc("retorna um bundle aleatorio")
     @api.marshal_list_with(_bundle, envelope="data")
