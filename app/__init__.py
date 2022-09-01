@@ -5,11 +5,9 @@ from .main.controller.user_controller import api as user_ns
 from .main.controller.auth_controller import api as auth_ns
 from .main.controller.bundle_controller import api as bundle_ns
 
-blueprint = Blueprint("api", __name__)
+blueprint = Blueprint(name="api", import_name=__name__, url_prefix="/api/v1")
 
-api = Api(
-    blueprint, prefix="/api/v1", title="Valdle API", version="1.0", description=""
-)
+api = Api(blueprint, title="Valdle API", version="1.0", description="", doc="/swagger")
 
 api.add_namespace(user_ns)
 api.add_namespace(auth_ns)
