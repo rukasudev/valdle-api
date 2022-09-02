@@ -1,3 +1,5 @@
+from flask_sslify import SSLify
+
 import os
 import unittest
 
@@ -30,4 +32,8 @@ def test():
 
 
 if __name__ == "__main__":
-    manager.run()
+    if "DYNO" in os.environ:  # only trigger SSLify if the app is running on Heroku
+        sslify = SSLify(app)
+
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
