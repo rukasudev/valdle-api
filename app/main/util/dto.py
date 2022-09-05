@@ -34,9 +34,10 @@ class BundleDto:
     bundle = api.model(
         "random_bundle",
         {
-            "bundle_name": fields.String(required=True, description="Name of bundle"),
-            "bundle_image": fields.String(
-                required=True, description="Promo image of bundle"
+            "bundle_image": fields.String(required=True, description="Image of bundle"),
+            "answer": fields.String(
+                required=True, description="Correct answer of bundle"
             ),
+            "choices": fields.List(fields.String),
         },
     )
