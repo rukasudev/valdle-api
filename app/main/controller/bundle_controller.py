@@ -10,9 +10,8 @@ _bundle = BundleDto.bundle
 
 
 @api.route("/random")
-class UserList(Resource):
-    @api.doc("retorna um bundle aleatorio")
-    @api.marshal_list_with(_bundle, envelope="data")
+class BundleList(Resource):
+    @api.doc("return a random bundle with image")
+    @api.marshal_list_with(_bundle)
     def get(self):
-        """retorna um bundle aleatorio"""
         return get_random_bundle_with_image()

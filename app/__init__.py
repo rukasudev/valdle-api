@@ -4,6 +4,7 @@ from flask import Blueprint
 from .main.controller.user_controller import api as user_ns
 from .main.controller.auth_controller import api as auth_ns
 from .main.controller.bundle_controller import api as bundle_ns
+from .main.controller.agent_controller import api as agent_ns
 
 blueprint = Blueprint(name="api", import_name=__name__)
 
@@ -19,3 +20,4 @@ api = Api(
 api.add_namespace(user_ns)
 api.add_namespace(auth_ns)
 api.add_namespace(bundle_ns)
+api.add_namespace(agent_ns)

@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY")
+    VALORANT_API = "https://valorant-api.com/v1"
 
 
 class DevelopmentConfig:

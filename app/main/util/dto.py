@@ -4,35 +4,57 @@ from flask_restx import Namespace, fields
 
 
 class UserDto:
-    api = Namespace("users", description="operações relacionadas a usuário")
+    api = Namespace("users", description="User operations")
     user = api.model(
         "users",
         {
-            "email": fields.String(required=True, description="Email do usuário"),
-            "name": fields.String(required=True, description="Nome do usuário"),
-            "password": fields.String(required=True, description="Senha do usuário"),
-            "public_id": fields.String(description="ID público do usuário"),
+            "uuid": fields.String(description="User UUUID"),
+            "email": fields.String(required=True, description="User Email"),
+            "name": fields.String(required=True, description="User Name"),
+            "password": fields.String(required=True, description="User password"),
         },
     )
 
 
 class AuthDto:
-    api = Namespace("auth", description="operações relacionadas a autenticação")
+    api = Namespace("auth", description="Auth operations")
     user_auth = api.model(
-        "autenticação",
+        "authentication",
         {
-            "email": fields.String(required=True, description="O endereço de email"),
-            "password": fields.String(
-                required=True, description="Senha de autenticação"
+            "email": fields.String(required=True, description="Auth email"),
+            "password": fields.String(required=True, description="Auth password"),
+        },
+    )
+
+
+class AgentDTO:
+    api = Namespace("agents", description="Agent operations")
+    agent = api.model(
+        "agent",
+        {
+            "uuid": fields.String(required=True, description="Agent uuid"),
+            "agent_name": fields.String(required=True, description="Agent name"),
+            "description": fields.String(
+                required=True, description="Agent description"
             ),
+            "display_icon": fields.String(
+                required=True, description="Agent display icon"
+            ),
+            "portrait_banner": fields.String(
+                required=True, description="Agent portrait banner"
+            ),
+            "background_banner": fields.String(
+                required=True, description="BAgent background banner"
+            ),
+            "agent_colors": fields.List(fields.String),
         },
     )
 
 
 class BundleDto:
-    api = Namespace("bundle", description="operações relacionadas a bundles")
+    api = Namespace("bundles", description="Bundle operations")
     bundle = api.model(
-        "random_bundle",
+        "bundle",
         {
             "bundle_image": fields.String(required=True, description="Image of bundle"),
             "answer": fields.String(

@@ -1,35 +1,54 @@
+from ..config import Config
+
 import requests
-import json
 import random
 
 
-def get_random_bundle_with_image():
-    response = requests.get("https://valorant-api.com/v1/bundles").json()
-    bundles = response["data"]
-    list_op = []
-    response = {}
-    black_list = [9, 36]
-    random_number = random.randint(0, len(bundles) - 1)
-    random_bundle = bundles[random_number]
-    while random_number in black_list:
-        random_number = random.randint(0, len(bundles) - 1)
+def get_all_bundles() -> list:
+    """Get all bundles from Valorant API"""
 
-    bundle_name = random_bundle["displayName"]
-    response["answer"] = bundle_name
-    list_op.append(bundle_name)
-    bundle_image = random_bundle["verticalPromoImage"]
-    response["bundle_image"] = bundle_image
+    base_url = Config.VALORANT_API + "/bundles"
+    request = requests.get(base_url).json()
+    response = list(request["data"])
 
-    for i in range(1, 4):
+    # remove bundles without promo_image
+    response.pop(9)
+    response.pop(36)
 
-        random_number2 = random.randint(0, len(bundles) - 1)
-        random_op = bundles[random_number2]
-        op_bundle = random_op["displayName"]
-        while op_bundle in list_op:
-            random_number2 = random.randint(0, len(bundles) - 1)
+    return response
 
-        op_bundle = random_op["displayName"]
-        list_op.append(op_bundle)
-    random.shuffle(list_op)
-    response["choices"] = list_op
+
+def get_bundle_by_index(index: int) -> dict:
+    """(Source: Bundles from Valorant API) Get bundle by index"""
+
+    request = get_all_bundles()
+    response = dict(request[index])
+    return response
+
+
+def get_random_bundle_with_image() -> dict:
+    """Get a random bundle with image and choices"""
+
+    bundles = get_all_bundles()
+    choices = []
+    choices_index = []
+
+    while len(choices) < 4:
+        sorted_index = random.randint(0, len(bundles) - 1)
+        if sorted_index in choices_index:
+            continue
+
+        random_bundle = bundles[sorted_index]
+        display_name = random_bundle["displayName"]
+        choices_index.append(sorted_index)
+        choices.append(display_name)
+
+    answer_index = random.randint(0, len(choices) - 1)
+    answer_bundle = bundles[answer_index]
+    response = dict(
+        bundle_image=answer_bundle["verticalPromoImage"],
+        answer=answer_bundle["displayName"],
+        choices=choices,
+    )
+
     return response, 200
