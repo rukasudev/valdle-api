@@ -43,7 +43,7 @@ def get_random_bundle_with_image() -> dict:
         choices_index.append(sorted_index)
         choices.append(display_name)
 
-    answer_index = random.randint(0, len(choices) - 1)
+    answer_index = random.choice(choices_index)
     answer_bundle = bundles[answer_index]
     response = dict(
         bundle_image=answer_bundle["verticalPromoImage"],
