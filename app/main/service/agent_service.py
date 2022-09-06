@@ -3,10 +3,11 @@ from ..config import Config
 import requests
 
 
-def get_all_agents() -> list:
+def get_all_agents(language: str) -> list:
     """Get all agents of Valorant API"""
 
-    base_url = Config.VALORANT_API + "/agents"
+    query_param = f"&language={language}" if language else ""
+    base_url = Config.VALORANT_API + f"/agents?isPlayableCharacter=true{query_param}"
     request = requests.get(base_url).json()
     response = list(request["data"])
 
@@ -21,10 +22,10 @@ def get_agent_by_index(index: int) -> dict:
     return response
 
 
-def get_all_agents_with_order_by(order_by_name: bool) -> dict:
+def get_all_agents_with_order_by(language: str, order_by_name: bool) -> dict:
     """(Optional: order by name) Get all agents from Valorant API"""
 
-    agents = get_all_agents()
+    agents = get_all_agents(language)
     response = []
 
     for agent in agents:

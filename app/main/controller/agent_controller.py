@@ -15,7 +15,8 @@ class AgentList(Resource):
     @api.marshal_list_with(_agent)
     def get(self):
         args = request.args
+        language = args.get("language")
         order_by_name = args.get("order_by_name")
-        parsed_param = order_by_name == "true"
+        is_order = order_by_name == "true"
 
-        return get_all_agents_with_order_by(parsed_param)
+        return get_all_agents_with_order_by(language, is_order)

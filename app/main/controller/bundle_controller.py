@@ -14,4 +14,7 @@ class BundleList(Resource):
     @api.doc("return a random bundle with image")
     @api.marshal_list_with(_bundle)
     def get(self):
-        return get_random_bundle_with_image()
+        args = request.args
+        language = args.get("language")
+
+        return get_random_bundle_with_image(language)

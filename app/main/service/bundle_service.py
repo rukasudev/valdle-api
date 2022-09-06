@@ -4,10 +4,11 @@ import requests
 import random
 
 
-def get_all_bundles() -> list:
+def get_all_bundles(language: str) -> list:
     """Get all bundles from Valorant API"""
 
-    base_url = Config.VALORANT_API + "/bundles"
+    query_param = f"?language={language}" if language else ""
+    base_url = Config.VALORANT_API + f"/bundles{query_param}"
     request = requests.get(base_url).json()
     response = list(request["data"])
 
@@ -26,10 +27,10 @@ def get_bundle_by_index(index: int) -> dict:
     return response
 
 
-def get_random_bundle_with_image() -> dict:
+def get_random_bundle_with_image(language: str) -> dict:
     """Get a random bundle with image and choices"""
 
-    bundles = get_all_bundles()
+    bundles = get_all_bundles(language)
     choices = []
     choices_index = []
 
