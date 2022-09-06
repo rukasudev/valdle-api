@@ -4,7 +4,7 @@ import os
 import unittest
 
 from flask_script import Manager
-
+from flask import redirect
 from app import blueprint
 from app.main import create_app, db
 
@@ -14,6 +14,11 @@ app.register_blueprint(blueprint)
 app.app_context().push()
 
 manager = Manager(app)
+
+
+@app.route("/")
+def main():
+    return redirect("/docs", code=308)
 
 
 @manager.command
