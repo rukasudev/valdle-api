@@ -12,8 +12,8 @@ def get_all_bundles() -> list:
     response = list(request["data"])
 
     # remove bundles without promo_image
-    response.pop(9)
     response.pop(36)
+    response.pop(9)
 
     return response
 
