@@ -10,7 +10,7 @@ api = UserDto.api
 _user = UserDto.user
 
 
-@api.route("/")
+@api.route("")
 class UserList(Resource):
     @api.doc("lista todos os usuários cadastrados")
     @admin_token_required

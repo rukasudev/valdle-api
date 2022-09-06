@@ -9,7 +9,7 @@ api = AgentDTO.api
 _agent = AgentDTO.agent
 
 
-@api.route("/")
+@api.route("")
 class AgentList(Resource):
     @api.doc("List of all agents")
     @api.marshal_list_with(_agent)
