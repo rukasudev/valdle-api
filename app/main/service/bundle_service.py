@@ -1,6 +1,5 @@
 from util import get_by_valorant_api
 
-import requests
 import random
 
 
