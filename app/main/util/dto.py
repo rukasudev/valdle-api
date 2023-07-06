@@ -44,9 +44,18 @@ class AgentDTO:
                 required=True, description="Agent portrait banner"
             ),
             "background_banner": fields.String(
-                required=True, description="BAgent background banner"
+                required=True, description="Agent background banner"
             ),
             "agent_colors": fields.List(fields.String),
+            "agent_picture": fields.String(
+                required=True, description="Agent picture"
+            ),
+            "ability_name": fields.String(
+                required=True, description="Ability name"
+            ),
+            "ability_picture": fields.String(
+                required=True, description="Ability picture"
+            ),
         },
     )
 
