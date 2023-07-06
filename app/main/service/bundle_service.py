@@ -1,4 +1,4 @@
-from util import get_by_valorant_api
+from .util import get_by_valorant_api
 
 import random
 
