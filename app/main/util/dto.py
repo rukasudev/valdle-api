@@ -32,8 +32,12 @@ class AgentDTO:
     agent = api.model(
         "agent",
         {
-            "uuid": fields.String(required=True, description="Agent uuid"),
-            "agent_name": fields.String(required=True, description="Agent name"),
+            "uuid": fields.String(
+                required=True, description="Agent uuid"
+            ),
+            "agent_name": fields.String(
+                required=True, description="Agent name"
+            ),
             "description": fields.String(
                 required=True, description="Agent description"
             ),
@@ -47,12 +51,14 @@ class AgentDTO:
                 required=True, description="Agent background banner"
             ),
             "agent_colors": fields.List(fields.String),
-            "agent_picture": fields.String(
-                required=True, description="Agent picture"
-            ),
-            "ability_name": fields.String(
-                required=True, description="Ability name"
-            ),
+        },
+    )
+    ability = api.model(
+        "ability",
+        {
+            "agent_name": fields.String(required=True, description="Agent name"),
+            "agent_picture": fields.String(required=True, description="Agent picture"),
+            "ability_name": fields.String(required=True, description="Ability name"),
             "ability_picture": fields.String(
                 required=True, description="Ability picture"
             ),
