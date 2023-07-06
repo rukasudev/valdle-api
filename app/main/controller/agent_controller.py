@@ -7,6 +7,7 @@ from ..service.agent_service import get_all_agents_with_order_by, get_agent_with
 
 api = AgentDTO.api
 _agent = AgentDTO.agent
+_ability = AgentDTO.ability
 
 
 @api.route("", strict_slashes=False)
@@ -22,10 +23,10 @@ class AgentList(Resource):
         return get_all_agents_with_order_by(language, is_order)
 
 
-@api.route("/abilities", strict_slashes=False)
+@api.route("/ability", strict_slashes=False)
 class AgentList(Resource):
-    @api.doc("List all abilities and pictures of agents")
-    @api.marshal_list_with(_agent)
+    @api.doc("Get random ability and picture of agent")
+    @api.marshal_list_with(_ability)
     def get(self):
         args = request.args
         language = args.get("language")
