@@ -1,5 +1,5 @@
 from ..config import Config
-
+from typing import Dict
 
 import requests
 import random
@@ -16,7 +16,7 @@ def get_all_agents(language: str) -> list:
     return response
 
 
-def get_agent_by_index(index: int) -> dict:
+def get_agent_by_index(index: int) -> Dict[str, str]:
     """(Source: Agents of Valorant API) Get agent by index"""
 
     request = get_all_agents()
@@ -24,7 +24,7 @@ def get_agent_by_index(index: int) -> dict:
     return response
 
 
-def get_all_agents_with_order_by(language: str, order_by_name: bool) -> dict:
+def get_all_agents_with_order_by(language: str, order_by_name: bool) -> Dict[str, str]:
     """(Optional: order by name) Get all agents from Valorant API"""
 
     agents = get_all_agents(language)
@@ -48,7 +48,7 @@ def get_all_agents_with_order_by(language: str, order_by_name: bool) -> dict:
     return response, 200
 
 
-def get_agent_with_ability(language: str, order_by_name: bool) -> dict:
+def get_agent_with_ability(language: str, order_by_name: bool) -> Dict[str, str]:
     """Get agent with a ability"""
     requests = get_all_agents(language)
 

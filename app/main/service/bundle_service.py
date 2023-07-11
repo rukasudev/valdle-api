@@ -1,4 +1,5 @@
 from .util import get_by_valorant_api
+from typing import Dict
 
 import random
 
@@ -15,7 +16,7 @@ def _get_valorant_bundles(language: str) -> list:
     return response
 
 
-def get_random_bundle_with_image(language: str) -> dict:
+def get_random_bundle_with_image(language: str) -> Dict[str, str]:
     """Get a random bundle with image and choices"""
 
     bundles = _get_valorant_bundles(language)
