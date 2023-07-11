@@ -7,6 +7,6 @@ def get_by_valorant_api(path: str, language: str) -> str:
     base_url = f"{Config.VALORANT_API}/{path}{query_param}"
     
     request = requests.get(base_url).json()
-    response = list(set(request["data"]))
+    response = request.get("data", dict())
     
     return response
