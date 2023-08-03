@@ -2,12 +2,12 @@ from xmlrpc.client import boolean
 from flask import request
 from flask_restx import Resource
 
-from ..util.dto import AgentDTO
+from ..views import agent_viewmodel
 from ..service.agent_service import get_all_agents_with_order_by, get_agent_with_ability
 
-api = AgentDTO.api
-_agent = AgentDTO.agent
-_ability = AgentDTO.ability
+api = agent_viewmodel.api
+_agent = agent_viewmodel.agent
+_ability = agent_viewmodel.ability
 
 
 @api.route("", strict_slashes=False)

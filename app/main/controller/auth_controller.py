@@ -2,11 +2,11 @@ from flask import request
 from flask_restx import Resource
 
 from app.main.service.auth_helper import Auth
-from ..util.dto import AuthDto
+from ..views import auth_viewmodel
 from typing import Dict, Tuple
 
-api = AuthDto.api
-user_auth = AuthDto.user_auth
+api = auth_viewmodel.api
+user_auth = auth_viewmodel.user_auth
 
 
 @api.route("/login")

@@ -2,12 +2,12 @@ from flask import request
 from flask_restx import Resource
 
 from app.main.util.decorator import admin_token_required
-from ..util.dto import UserDto
+from ..views import user_viewmodel
 from ..service.user_service import save_new_user, get_all_users, get_a_user
 from typing import Dict, Tuple
 
-api = UserDto.api
-_user = UserDto.user
+api = user_viewmodel.api
+_user = user_viewmodel.user
 
 
 @api.route("", strict_slashes=False)

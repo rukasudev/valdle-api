@@ -1,12 +1,11 @@
 from flask import request
 from flask_restx import Resource
 
-from ..util.dto import BundleDto
+from ..views import bundle_viewmodel
 from ..service.bundle_service import get_random_bundle_with_image
-from typing import Dict, Tuple
 
-api = BundleDto.api
-_bundle = BundleDto.bundle
+api = bundle_viewmodel.api
+_bundle = bundle_viewmodel.bundle
 
 
 @api.route("/random")
